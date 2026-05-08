@@ -26,8 +26,29 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'avatar_url',
         'name',
         'email',
+        'username',
         'password',
     ];
+
+    public function teacher(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function student(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function ortu(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Ortu::class);
+    }
+
+    public function akademikStaff(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(AkademikStaff::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -3,7 +3,6 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Guru\Resources\GuruResource\Pages\Dashboard;
-use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -42,9 +41,10 @@ class GuruPanelProvider extends PanelProvider
             ->widgets([
                 //Widgets\AccountWidget::class,
                 \App\Filament\Guru\Widgets\ProfileWidget::class,
+                \App\Filament\Widgets\BackToModulWidget::class,
             ])
             ->middleware([
-                EncryptCookies::class,  
+                EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
                 AuthenticateSession::class,
@@ -54,8 +54,14 @@ class GuruPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->userMenuItems([
+                \Filament\Navigation\MenuItem::make()
+                    ->label('Pilihan Modul')
+                    ->url(fn () => route('dashboard'))
+                    ->icon('heroicon-m-squares-2x2'),
+            ])
             ->authMiddleware([
-                Authenticate::class,
+                \App\Http\Middleware\FilamentAuthenticate::class,
             ]);
     }
 }

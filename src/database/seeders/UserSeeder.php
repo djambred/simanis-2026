@@ -3,15 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $sadmin = User::firstOrCreate(
@@ -20,28 +16,40 @@ class UserSeeder extends Seeder
         );
         $sadmin->assignRole('super_admin');
 
-        $akademik = User::firstOrCreate(
+        // username = NIA (3 digit)
+        $akademik = User::updateOrCreate(
             ['email' => 'adm@admin.com'],
-            ['name' => 'Akademik', 'password' => Hash::make('password')]
+            ['name' => 'Staff Akademik', 'username' => 'NIA-001', 'password' => Hash::make('password')]
         );
         $akademik->assignRole('akademik');
 
-        $guru = User::firstOrCreate(
+        // username = NIG (4 digit)
+        $guru = User::updateOrCreate(
             ['email' => 'guru@admin.com'],
-            ['name' => 'Guru', 'password' => Hash::make('password')]
+            ['name' => 'Budi Santoso', 'username' => 'NIG-0001', 'password' => Hash::make('password')]
         );
         $guru->assignRole('guru');
 
-        $siswa = User::firstOrCreate(
+        // username = NIG (4 digit)
+        $waliKelas = User::updateOrCreate(
+            ['email' => 'walikelas@admin.com'],
+            ['name' => 'Siti Rahayu', 'username' => 'NIG-0002', 'password' => Hash::make('password')]
+        );
+        $waliKelas->assignRole('wali_kelas');
+
+        // username = NIS (6 digit)
+        $siswa = User::updateOrCreate(
             ['email' => 'siswa@admin.com'],
-            ['name' => 'Siswa', 'password' => Hash::make('password')]
+            ['name' => 'Ahmad Fauzi', 'username' => 'NIS-000001', 'password' => Hash::make('password')]
         );
         $siswa->assignRole('siswa');
 
-        $ortu = User::firstOrCreate(
+        // username = NIO (5 digit)
+        $ortu = User::updateOrCreate(
             ['email' => 'ortu@admin.com'],
-            ['name' => 'Orang Tua', 'password' => Hash::make('password')]
+            ['name' => 'Hendra Wijaya', 'username' => 'NIO-00001', 'password' => Hash::make('password')]
         );
         $ortu->assignRole('orang_tua');
     }
 }
+

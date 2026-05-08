@@ -13,6 +13,7 @@ class PanelResolver
         'super_admin' => '/admin',
         'akademik'    => '/adm',
         'guru'        => '/guru',
+        'wali_kelas'  => '/guru',
         'siswa'       => '/siswa',
         'orang_tua'   => '/ortu',
     ];
@@ -24,6 +25,7 @@ class PanelResolver
         'super_admin' => 'admin',
         'akademik'    => 'akademik',
         'guru'        => 'guru',
+        'wali_kelas'  => 'guru',
         'siswa'       => 'siswa',
         'orang_tua'   => 'orang-tua',
     ];
